@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-# Определение класса Parsing_Data и его структуры столбцов!
+# Определение класса Parsing_Data и его структуры столбцов
 class Parsing_Data(Base):
     __tablename__ = 'ParsingData'
     id = db.Column(Integer, primary_key=True)

@@ -9,7 +9,7 @@ from app.local.models import data_model
 from app.local.repository import main_repository
 from sqlalchemy.ext.declarative import declarative_base
 
-# Здесь определяем функцию для сбора ссылок с веб-страницы!
+# Здесь определяем функцию для сбора ссылок с веб-страницы
 def collect_links(base_url, page_url):
     # Загрузить веб-страницу
     response = requests.get(page_url)
