@@ -35,8 +35,6 @@ def collect_title(base_url, page_url):
 base_url = "https://gdz.ru"
 page_url = "https://gdz.ru/"
 title, keywords = collect_title(base_url, page_url)
-print("Title:", title)
-print("Keywords:", keywords)
 # Здесь определяем функцию для сбора ссылок с веб-страницы
 def collect_links(base_url, page_url):
     # Загрузить веб-страницу
@@ -64,8 +62,6 @@ def collect_links(base_url, page_url):
 base_url = "https://gdz.ru"
 page_url = "https://gdz.ru/"
 title, keywords = collect_title(base_url, page_url)
-print("Title:", title)
-print("Keywords:", keywords)
 
 links = collect_links(base_url, page_url)
 for link in links:
