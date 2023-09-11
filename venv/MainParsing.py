@@ -60,7 +60,6 @@ def collect_links(base_url, page_url):
         return []
 
 # Пример использования функции
-title, keywords = collect_title(base_url, page_url)
 links = collect_links(base_url, page_url)
 for link in links:
     main_repository.create_new_link(base_url, link, title, keywords)
