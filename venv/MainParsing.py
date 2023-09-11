@@ -9,6 +9,9 @@ from app.local.repository import main_repository
 from sqlalchemy.ext.declarative import declarative_base
 # Здесь определяем функцию для сбора ссылок с веб-страницы
 # Здесь определяем функцию для сбора заголовка и ключевых слов с веб-страницы
+base_url = "https://gdz.ru"
+page_url = "https://gdz.ru/"
+
 def collect_title(base_url, page_url):
     # Загрузить веб-страницу
     response = requests.get(page_url)
@@ -32,8 +35,6 @@ def collect_title(base_url, page_url):
         return "", ""
 
 # Пример использования функции
-base_url = "https://gdz.ru"
-page_url = "https://gdz.ru/"
 title, keywords = collect_title(base_url, page_url)
 # Здесь определяем функцию для сбора ссылок с веб-страницы
 def collect_links(base_url, page_url):
@@ -59,10 +60,7 @@ def collect_links(base_url, page_url):
         return []
 
 # Пример использования функции
-base_url = "https://gdz.ru"
-page_url = "https://gdz.ru/"
 title, keywords = collect_title(base_url, page_url)
-
 links = collect_links(base_url, page_url)
 for link in links:
     main_repository.create_new_link(base_url, link, title, keywords)
