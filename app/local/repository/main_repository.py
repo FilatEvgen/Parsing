@@ -10,16 +10,23 @@ engine = create_engine('postgresql://postgres:89080620743@localhost:5432/parsing
 connection = engine.connect()
 metadata = db.MetaData()
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-# Создание таблицы в базе данных
-Base.metadata.create_all(engine)
+
+# Функция которая возвращает объект сессии
+def get_db_session() -> Session:
+    return SessionLocal()
 # проверка существует ли ссылка в базне данных по базовому URL
-def check_existing_link(session: Session, link: str) -> Parsing_Data:
+def check_existing_link( link: str) -> Parsing_Data:
+    session = get_db_session()
     existing_link = session.query(Parsing_Data).filter(Parsing_Data.url == link).first()
+    session.close()
     return existing_link
 #  Создает новую запись Parsing_Data, если ссылка не существует в базе данных
-def create_new_link(session: Session, base_url: str, link: str) -> None:
-    existing_link = check_existing_link(session, link)
+def create_new_link(base_url: str, link: str, title: str, keywords: str) -> None:
+    session = get_db_session()
+    existing_link = check_existing_link(link)
     if existing_link is None:
-        new_link = Parsing_Data(name="Название ссылки", keywords="Ключевые слова", base_url=base_url, url=link)
+        new_link = Parsing_Data(name=title, keywords=keywords, base_url=base_url, url=link)
         session.add(new_link)
+        session.commit()
+    session.close()
 
